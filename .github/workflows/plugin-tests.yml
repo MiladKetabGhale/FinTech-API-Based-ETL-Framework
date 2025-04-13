@@ -35,7 +35,7 @@ jobs:
             -t mlops-core \
             .
 
-      - name: Run tests for plugin: ${{ matrix.plugin }}
+      - name: "Run tests for plugin: ${{ matrix.plugin }}"
         run: |
           docker run --rm \
             -v "${{ github.workspace }}/plugins:/app/plugins" \
