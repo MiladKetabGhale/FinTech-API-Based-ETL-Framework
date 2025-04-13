@@ -117,6 +117,12 @@ Use the plugins as-is or customize them for advanced or vendor-specific logic.
    python main.py --config example_config_vantage.yaml
 
 ---
+
+### Dockerization
+    - This pipeline has been containerized using Docker for easier deployment and environment consistency.
+    - A `Dockerfile` and a `Makefile` have been added to clearly instruct how to build the docker image.
+
+---
 ## Project Structure
 
 Below is a high-level overview of the repository:
@@ -247,11 +253,8 @@ To customize the overall pipeline logic (e.g., post-processing, analytics, autom
 ```bash
 core/pipeline_runner.py
 ```
-## Future Directions
 
-### Dockerization (April)
-- Containerize this pipeline for easier deployment and environment consistency.  
-- A `Dockerfile` and usage instructions will be added.
+## Future Additions
 
 ### Airflow Integration (April)
 - Orchestrate and schedule these pipelines using **Apache Airflow**.  
