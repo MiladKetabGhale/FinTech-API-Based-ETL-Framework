@@ -1,0 +1,47 @@
+name: Plugin Test Suite
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-plugins:
+    name: Run Plugin Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - plugin: fmp
+            config: example_config_fmp.yaml
+          - plugin: vantage
+            config: example_config_vantage.yaml
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build mlops-core Docker image
+        run: |
+          docker build \
+            -t mlops-core \
+            .
+
+      - name: Run tests for plugin: ${{ matrix.plugin }}
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/plugins:/app/plugins" \
+            -v "${{ github.workspace }}/tests/test_plugins:/app/tests/test_plugins" \
+            -v "${{ github.workspace }}/${{ matrix.config }}:/app/example_config.yaml" \
+            -e CONFIG_PATH="example_config.yaml" \
+            -e PLUGIN_NAME="${{ matrix.plugin }}" \
+            -e PYTHONPATH="/app" \
+            mlops-core
