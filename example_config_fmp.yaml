@@ -1,0 +1,5 @@
+source: fmp
+symbol: AAPL
+api_key: ${FMP_API_KEY}
+output_dir: output/fmp
+error_log_dir: logs/fmp

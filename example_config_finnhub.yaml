@@ -1,0 +1,8 @@
+source: finnhub
+symbol: AAPL
+api_key: ${FINNHUB_API_KEY}
+output_dir: output/finnhub
+error_log_dir: logs/finnhub
+from: 1704067200
+to: 1706659200
+resolution: D

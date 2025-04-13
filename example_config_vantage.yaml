@@ -1,0 +1,6 @@
+source: vantage
+symbol: AAPL
+api_key: ${VANTAGE_API_KEY}
+output_dir: output/vantage
+error_log_dir: logs/vantage
+
